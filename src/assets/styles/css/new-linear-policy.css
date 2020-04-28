@@ -1,0 +1,73 @@
+#policy-wrapper .container {
+  padding: 100px 0;
+  max-width: 1000px;
+  margin: 0 auto; }
+  #policy-wrapper .container button {
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 13px;
+    color: #fff;
+    border: none;
+    cursor: pointer; }
+  #policy-wrapper .container h1 {
+    font-size: 30px;
+    font-weight: lighter;
+    padding-bottom: 10px; }
+  #policy-wrapper .container .table {
+    border: 1px solid lightgray;
+    border-bottom: 0; }
+    #policy-wrapper .container .table .tr {
+      display: grid;
+      grid-template-columns: 30% 20% 40% 10%;
+      border-bottom: 1px solid lightgray;
+      align-items: center; }
+      #policy-wrapper .container .table .tr h2 {
+        font-weight: bold;
+        font-size: 15px; }
+      #policy-wrapper .container .table .tr div, #policy-wrapper .container .table .tr h2, #policy-wrapper .container .table .tr p {
+        padding: 7px 10px; }
+      #policy-wrapper .container .table .tr div {
+        border-right: 1px solid lightgray;
+        height: 100%;
+        display: flex;
+        align-items: center; }
+        #policy-wrapper .container .table .tr div select {
+          width: 100%;
+          height: 25px; }
+      #policy-wrapper .container .table .tr input {
+        border: 1px solid lightgray;
+        background-color: transparent;
+        padding: 2px 5px;
+        width: 100%; }
+      #policy-wrapper .container .table .tr p, #policy-wrapper .container .table .tr input {
+        font-size: 14px; }
+      #policy-wrapper .container .table .tr > :last-child {
+        border-right: 0; }
+      #policy-wrapper .container .table .tr .min-max {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between; }
+        #policy-wrapper .container .table .tr .min-max input {
+          width: 82.2%; }
+        #policy-wrapper .container .table .tr .min-max label span {
+          font-size: 14px;
+          padding-right: 5px; }
+      #policy-wrapper .container .table .tr .delete-btn {
+        width: 100%;
+        padding: 6px;
+        font-size: 12px;
+        background-color: darkred; }
+  #policy-wrapper .container .save-btn {
+    width: 100px;
+    margin: 20px 0 20px auto;
+    background-color: deepskyblue; }
+  #policy-wrapper .container .add-new-wrapper {
+    margin-top: 50px; }
+    #policy-wrapper .container .add-new-wrapper > div {
+      display: grid;
+      grid-template-columns: 400px 100px;
+      grid-gap: 20px; }
+      #policy-wrapper .container .add-new-wrapper > div > button {
+        background-color: deepskyblue; }
+
+/*# sourceMappingURL=new-linear-policy.css.map */
