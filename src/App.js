@@ -1,5 +1,5 @@
 import React from 'react';
-import NewLinearPolicy from "./Components/new_linear_policy";
+import NewLinearPolicy from "./Pages/NewLinearPolicy.js";
 import './App.css';
 
 function App() {
