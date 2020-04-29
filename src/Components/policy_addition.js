@@ -12,13 +12,8 @@ export default class PolicyAddition extends React.Component {
         {id: 3, val: 'policy 3'},
         {id: 4, val: 'policy 4'}
       ],
-      current_option: {id: 1, val: 'policy 1'},
       selected_options: [],
     }
-  }
-
-  componentWillMount() {
-    console.log('hello');
   }
 
   handleSubmit = (e) => {
