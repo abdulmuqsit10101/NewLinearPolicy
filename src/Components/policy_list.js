@@ -74,9 +74,27 @@ export default class NewLinearPolicy extends Component {
                       <option>less than</option>
                     </select>
                   </div>
-                  <div>
-                    <input defaultValue={value}/>
-                  </div>
+                  {
+                    condition === 'between' ?
+                      <div className="min-max">
+                        <label>
+                      <span>
+                        Min:
+                      </span>
+                          <input defaultValue={0}/>
+                        </label>
+                        <label>
+                      <span>
+                        Max:
+                      </span>
+                          <input defaultValue={0}/>
+                        </label>
+                      </div>
+                      :
+                      <div>
+                        <input defaultValue={value}/>
+                      </div>
+                  }
                   <div>
                     <button className="delete-btn">Delete</button>
                   </div>
