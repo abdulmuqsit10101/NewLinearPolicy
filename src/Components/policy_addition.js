@@ -22,7 +22,7 @@ export default class PolicyAddition extends React.Component {
     const value = this.refs.selectBox.value;
     const selected = options.filter(option => (option.val === value));
     const remaining = options.filter(option => (option.val !== value));
-    this.setState({selected_options: [...this.state.selected_options, selected[0]], options: remaining}, () => {console.log('state : ', this.state)});
+    this.setState({selected_options: [...this.state.selected_options, selected[0]], options: remaining}, () => {console.log('Remaining : ', this.state.options)});
   };
 
   handleChange = (e) => {
@@ -32,12 +32,12 @@ export default class PolicyAddition extends React.Component {
 
   render() {
 
-    const {options} = this.state;
+    const {options, selected_options} = this.state;
 
     return (
       <>
         <div className="container">
-          <NewLinearPolicy/>
+          <NewLinearPolicy policies={selected_options} />
           <div className="add-new-wrapper">
             <h1>Add New</h1>
             <form>
