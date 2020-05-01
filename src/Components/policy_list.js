@@ -7,17 +7,37 @@ export default class NewLinearPolicy extends Component {
   };
 
   componentWillReceiveProps(newProps) {
-    const array = newProps.policies;
-    let newArray = [];
-    array && array.map(arrayItem => {
-      const item = {...arrayItem, condition: 'greater than', value: 3000};
-      newArray.push(item);
-    });
-    this.setState({data: newArray});
+    const obj = newProps.policy;
+    const {data} = this.state;
+    const item = {...obj, condition: 'greater than', value: 3000};
+    this.setState({data: [...data, item]});
   }
+
+  handleSelect = (e, id) => {
+    const {data} = this.state;
+    const newVal = e.target.value;
+    const currentData = [...data];
+    const arrObj = currentData.filter(obj => (obj.id === id))[0];
+    arrObj['condition'] = newVal;
+    console.log('arrObj', arrObj);
+    const newData = [...data];
+    let itemIndex;
+    newData.map(item => {
+      if (item.id === id) {
+        itemIndex = newData.indexOf(item);
+      }
+    });
+    newData[itemIndex] = arrObj;
+    this.setState({data: newData});
+  };
+
+  handleSave = () => {
+    console.log('this.state = ', this.state);
+  };
 
   render() {
     const {data} = this.state;
+    const {handleSelect, handleSave} = this;
     console.log('data: ', data);
     return (
       <section id="policy-wrapper">
@@ -48,11 +68,10 @@ export default class NewLinearPolicy extends Component {
                     <p>{val}</p>
                   </div>
                   <div>
-                    <select defaultValue={condition}>
+                    <select value={condition} onChange={(e) => handleSelect(e, id)}>
                       <option>greater than</option>
                       <option>between</option>
                       <option>less than</option>
-                      <option>{condition}</option>
                     </select>
                   </div>
                   <div>
@@ -69,7 +88,7 @@ export default class NewLinearPolicy extends Component {
         </div>
 
         <div>
-          <button className="save-btn">Save</button>
+          <button className="save-btn" onClick={handleSave}>Save</button>
         </div>
       </section>
     )

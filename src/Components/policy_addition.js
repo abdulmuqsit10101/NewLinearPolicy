@@ -12,36 +12,32 @@ export default class PolicyAddition extends React.Component {
         {id: 3, val: 'policy 3'},
         {id: 4, val: 'policy 4'}
       ],
-      selected_options: [],
+      selected_option: [],
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {options} = this.state;
+    const {options, selected_option} = this.state;
     const value = this.refs.selectBox.value;
     const selected = options.filter(option => (option.val === value));
     const remaining = options.filter(option => (option.val !== value));
-    this.setState({selected_options: [...this.state.selected_options, selected[0]], options: remaining}, () => {console.log('Remaining : ', this.state.options)});
-  };
-
-  handleChange = (e) => {
-    const val = e.target.value;
-    this.setState({current: val});
+    this.setState({selected_option: selected[0], options: remaining}, () => {console.log('Remaining : ', selected_option)});
+    console.log('handleSubmit is done : ');
   };
 
   render() {
 
-    const {options, selected_options} = this.state;
+    const {options, selected_option} = this.state;
 
     return (
       <>
         <div className="container">
-          <NewLinearPolicy policies={selected_options} />
+          <NewLinearPolicy policy={selected_option} />
           <div className="add-new-wrapper">
             <h1>Add New</h1>
             <form>
-              <select ref="selectBox" onChange={(e) => this.handleChange(e)} defaultValue={'option 1'}>
+              <select ref="selectBox" defaultValue={'option 1'}>
                 {
                   options.map(opt => {
                     return (
