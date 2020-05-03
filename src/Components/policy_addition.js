@@ -12,18 +12,17 @@ export default class PolicyAddition extends React.Component {
         {id: 3, val: 'policy 3'},
         {id: 4, val: 'policy 4'}
       ],
-      selected_option: [],
+      selected_option: []
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {options, selected_option} = this.state;
+    const {options} = this.state;
     const value = this.refs.selectBox.value;
     const selected = options.filter(option => (option.val === value));
     const remaining = options.filter(option => (option.val !== value));
-    this.setState({selected_option: selected[0], options: remaining}, () => {console.log('Remaining : ', selected_option)});
-    console.log('handleSubmit is done : ');
+    this.setState({selected_option: selected[0], options: remaining});
   };
 
   render() {
@@ -33,7 +32,7 @@ export default class PolicyAddition extends React.Component {
     return (
       <>
         <div className="container">
-          <NewLinearPolicy policy={selected_option} />
+          <NewLinearPolicy policy={selected_option}/>
           <div className="add-new-wrapper">
             <h1>Add New</h1>
             <form>

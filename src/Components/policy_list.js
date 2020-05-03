@@ -9,7 +9,7 @@ export default class NewLinearPolicy extends Component {
   componentWillReceiveProps(newProps) {
     const obj = newProps.policy;
     const {data} = this.state;
-    const item = {...obj, condition: 'greater than', value: 3000};
+    const item = {...obj, condition: 'greater than', value: 100};
     this.setState({data: [...data, item]});
   }
 
@@ -18,27 +18,68 @@ export default class NewLinearPolicy extends Component {
     const newVal = e.target.value;
     const currentData = [...data];
     const arrObj = currentData.filter(obj => (obj.id === id))[0];
+
+    //setting value
+
+    console.log('newVal L ', newVal, this.refs);
+
+    if (newVal === 'between') {
+      arrObj['value'] = {min: 0, max: 100};
+    } else if (newVal === 'less than') {
+      arrObj['value'] = 3000;
+      if (this.refs.normal) {
+        this.refs.normal.value = 3000;
+      }
+    } else {
+      arrObj['value'] = 100;
+      if (this.refs.normal) {
+        this.refs.normal.value = 100;
+      }
+    }
+
+    //setting condition
     arrObj['condition'] = newVal;
-    console.log('arrObj', arrObj);
     const newData = [...data];
-    let itemIndex;
-    newData.map(item => {
-      if (item.id === id) {
-        itemIndex = newData.indexOf(item);
+
+    // updating Obj with updated Values.
+
+    var itemIndex;
+    newData.map(obj => {
+      if (obj.id === id) {
+        itemIndex = newData.indexOf(obj);
       }
     });
+
     newData[itemIndex] = arrObj;
     this.setState({data: newData});
   };
 
+  handleInput = (e, id) => {
+
+    const {data} = this.state;
+
+    const inputValue = Number(e.target.value);
+
+    //TODO: find out a spread operator issue down below. For You ;)
+    const inputName = e.target.name;
+    const currentData = [...data];
+    const currentObj = currentData.filter(obj => (obj.id === id))[0];
+    const currentValue = currentObj.value;
+
+    if (inputName) {
+      currentObj.value = {...currentValue, [inputName]: inputValue};
+    } else {
+      currentObj.value = inputValue;
+    }
+  };
+
   handleSave = () => {
-    console.log('this.state = ', this.state);
+    console.log('this.state = ', this.state.data);
   };
 
   render() {
     const {data} = this.state;
     const {handleSelect, handleSave} = this;
-    console.log('data: ', data);
     return (
       <section id="policy-wrapper">
         <h1>New Linear Policy</h1>
@@ -81,18 +122,21 @@ export default class NewLinearPolicy extends Component {
                       <span>
                         Min:
                       </span>
-                          <input defaultValue={0}/>
+                          <input type="number" name={"min"} onChange={(e) => this.handleInput(e, id)}
+                                 defaultValue={value.min}/>
                         </label>
                         <label>
                       <span>
                         Max:
                       </span>
-                          <input defaultValue={0}/>
+                          <input type="number" name={"max"} onChange={(e) => this.handleInput(e, id)}
+                                 defaultValue={value.max}/>
                         </label>
                       </div>
                       :
                       <div>
-                        <input defaultValue={value}/>
+                        <input ref="normal" type="number" onChange={(e) => this.handleInput(e, id)}
+                               defaultValue={value}/>
                       </div>
                   }
                   <div>
