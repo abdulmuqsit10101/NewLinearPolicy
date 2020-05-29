@@ -1,5 +1,5 @@
 import React from "react";
-import NewLinearPolicy from './policy_list.js';
+import PolicyList from './policy_list.js';
 
 export default class PolicyAddition extends React.Component {
 
@@ -32,7 +32,7 @@ export default class PolicyAddition extends React.Component {
     return (
       <>
         <div className="container">
-          <NewLinearPolicy policy={selected_option}/>
+          <PolicyList policies={selected_option}/>
           <div className="add-new-wrapper">
             <h1>Add New</h1>
             <form>
