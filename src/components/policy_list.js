@@ -7,9 +7,9 @@ export default class NewLinearPolicy extends Component {
   };
 
   componentWillReceiveProps(newProps) {
-    const obj = newProps.policy;
+    const {policies} = newProps;
     const {data} = this.state;
-    const item = {...obj, condition: 'greater than', value: 100};
+    const item = {...policies, condition: 'greater than', value: 100};
     this.setState({data: [...data, item]});
   }
 
@@ -20,8 +20,6 @@ export default class NewLinearPolicy extends Component {
     const arrObj = currentData.filter(obj => (obj.id === id))[0];
 
     //setting value
-
-    console.log('newVal L ', newVal, this.refs);
 
     if (newVal === 'between') {
       arrObj['value'] = {min: 0, max: 100};
@@ -74,7 +72,7 @@ export default class NewLinearPolicy extends Component {
   };
 
   handleSave = () => {
-    console.log('this.state = ', this.state.data);
+    console.log('Data : ', this.state.data);
   };
 
   render() {
